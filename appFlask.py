@@ -15,11 +15,20 @@ y = data['Income_Per_Hour']
 income_regression = LinearRegression().fit(X, y)
 
 
-@app.route('/', methods=['POST'])
+@app.route('/')#, methods=['POST'])
 def hello_world():
     """
     Home page, takes input data from html form and then predicts
     """
+#    json = request.json#
+#
+#    result = income_regression.predict([[
+#        float(json["Schooling"]),
+#        float(json["English"])
+#    ]])
 
-    #prediction = model.predict(data)
+ #   result = {"Result": float(result[0])}
+
+ #   return jsonify(result) 
+  #  prediction = model.predict(data)
     return render_template('example.html', **locals())
