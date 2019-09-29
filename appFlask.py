@@ -15,7 +15,7 @@ y = data['Income_Per_Hour']
 income_regression = LinearRegression().fit(X, y)
 
 
-@app.route('/')
+@app.route('/', methods=['POST'])
 def hello_world():
     """
     Home page, takes input data from html form and then predicts
