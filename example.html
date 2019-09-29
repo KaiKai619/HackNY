@@ -1,13 +1,24 @@
 <html>
     <head>
-
+        <title>Example</title>
     </head>
     <body>
+        <h1>
+            Years of Education
+        </h1>
+    
         <input type="number" min="0" max="35" id="Edu">
+        <br>
+        <h1>
+            English Level
+        </h1>
         <input type="number" min="0" max="4" id="English">
-
-        <button id="Submit">Submit</button>
-        <p>Value: <span id = "Result"></span></p>
+        <br>
+        <br>
+        <button onclick="updateDesc();" id="Submit">Submit</button>
+        <br>
+        <p><h1>Value: </h1><span id = "Result"></span></p>
+        
     </body>
     <script>
 
@@ -18,15 +29,17 @@
     let educationValue = education.value
     let englishValue = english.value
 
+    function updateDesc(){
+        educationValue = education.value
+        englishValue = english.value
+    }
+    
 
     let result = document.querySelector("#Result")
 
     const btn = document.querySelector("#Submit")
 
     btn.addEventListener("click", function(){
-        educationValue = education.value
-        englishValue = english.value
-
         console.log(educationValue)
         console.log(englishValue)
         fetch("https://hacknyapi.onrender.com/predict", {
@@ -37,23 +50,10 @@
             method: "POST"
         }).then(res => res.text()).then(
             text => {
-                let data = JSON.parse(text)
-                // console.log(data["Result"])
-                result.innerHTML = data["Result"]
+                result.innerHTML = text
             })
     })
 
-    /*
-.then(res => res.text()).then(
-            text => {
-                console.log(text[0])
-                result.innerHTML = text
-            })
-
-            .then(res => {
-            console.log(res.text())
-        })
-    */
     
 
     

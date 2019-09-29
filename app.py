@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 app = Flask(__name__)
 
 from sklearn.linear_model import LinearRegression
@@ -17,18 +17,17 @@ income_regression = LinearRegression().fit(X, y)
 
 @app.route('/')
 def hello_world():
-   return 'Hello, World!'
-
-@app.route("/predict", methods=["POST"])
-def predict():
-
-    json = request.json
-
-    result = income_regression.predict([[
-        float(json["Schooling"]),
-        float(json["English"])
-    ]])
+    """
+    Home page, takes input data from html form and then predicts
+    """
     
-    result = {"Result": float(result[0])}
+    # extract Form input data
+    #formData = formData
 
-    return jsonify(result)
+    #schoolYears = formData[0]
+    #englishSkill = formData[1]
+    #country = formData[2]
+    #gender = formData[3]
+
+    #prediction = model.predict(data)
+    return render_template('example.html', **locals())
