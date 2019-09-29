@@ -10,3 +10,5 @@ Harnessing the power of AI and big data, we used information on refugees to pred
 The API that powers the prediction is located at the repository linked below:
 https://github.com/Leschonander/HackNYFlaskAPI
 Used Scikit-Learn and Flask to deploy the API into production. 
+
+Data from this survey https://www.openicpsr.org/openicpsr/project/104642/version/V3/view .
