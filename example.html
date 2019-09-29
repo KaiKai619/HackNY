@@ -1,0 +1,207 @@
+<html>
+    <head>
+        <style>
+        body, html {
+            width: 100%;
+            height: 100%;
+            padding: 0px;
+            overflow-x: hidden;
+            margin: 0;
+            /* background-image: linear-gradient(to right,#a5d6a7,#d7ffd9); */
+            background-image: url("https://images.unsplash.com/photo-1508614999368-9260051292e5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: fixed;
+            
+        }
+
+        /* Header/Logo Title */
+        .header {
+            background-color: #ffffff;
+            max-width: 1920px;
+            margin: 0 auto;
+            padding: 0 2%;
+            position: relative;
+            text-align: left;
+            align-items: center;
+            display: flex;
+            height: 71px;
+            justify-content: space-between;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /*Page Title */
+        .title {
+            color: #707070;
+            font-size: 55px;
+            left: 20px;
+            padding-bottom: 20px;
+            position: relative;
+            text-align: left;
+            }
+
+        /* Bordered form */
+        #form {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 65%;
+            /* display: inline-block;  */
+            font-size: 14pt;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 40px auto;
+            padding: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+            /*left/right, top/down, how big*/
+            border-radius: 10px;
+            background-color: white;
+            vertical-align: center;
+        }
+
+
+
+        .paragraph{
+        padding: 0 2%;
+        }
+
+        /* Full-width inputs */
+        input[type=text], input[type=number], input[type=email], input[type=name], input[type=home], input[type=practice], input[type=practiceadd], input[type=license] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            background-color: #EBF4F2;
+            border-radius: 5px;
+            border: 0px;
+            box-sizing: border-box;
+        }
+
+        /* Set a style for all buttons */
+        button {
+            background-color: rgb(159, 190, 183);
+            outline:none;
+            height:  38px;
+            display:  inline-block;
+            float:  none;
+            text-align:  center;
+            padding:  10px;
+            font-size:  14px;
+            color:  black;
+            border:  2px solid rgb(108, 148, 139, 0);
+            border-radius: 5px;
+        }
+
+        /* Add a hover effect for buttons */
+        button:hover {
+            color:  rgb(108, 148, 139);
+            background: white;
+            border:  2px solid rgb(108, 148, 139);
+            border-radius: 5px;
+        }
+
+        a:link, a:visited, a:active {
+            color: black;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+        }
+
+        /* Extra style for the cancel button (red) */
+        .cancelbtn {
+            width: auto;
+            padding: 10px 18px;
+            background-color: rgb(159, 190, 183); 
+        }
+
+        /* Add padding to containers */
+        .container {
+            padding: 16px;
+        }
+
+        /* The "Forgot password" text */
+        span.psw {
+            float: right;
+            padding-top: 16px;
+        }
+
+        .floating{
+        float: right;
+        }
+
+        /* Change styles for span and cancel button on extra small screens */
+        @media screen and (max-width: 300px) {
+            span.psw {
+                display: block;
+                float: none;
+            }
+            .cancelbtn {
+                width: 100%;
+            }
+        }    
+        
+        </style>
+    </head>
+    <body>
+        <div id="Form">
+            <label>Education Level</label>
+            <input type="number" min="0" max="35" id="Edu">
+
+            <label>Current English Education</label>
+            <input type="number" min="0" max="4" id="English">
+
+            <button id="Submit">Submit</button>
+        </div>
+        
+        <p>Value: <span id = "Result"></span></p>
+    </body>
+    <script>
+
+    let education = document.querySelector("#Edu")
+    let english = document.querySelector("#English")
+
+
+    let educationValue = education.value
+    let englishValue = english.value
+
+
+    let result = document.querySelector("#Result")
+
+    const btn = document.querySelector("#Submit")
+
+    btn.addEventListener("click", function(){
+        
+        educationValue = education.value
+        englishValue = english.value
+
+        console.log(educationValue)
+        console.log(englishValue)
+        fetch("https://hacknyapi.onrender.com/predict", {
+            body:`{"Schooling": ${educationValue}, "English": ${englishValue}}`,
+            headers: {
+            "Content-Type": "application/json"
+            },
+            method: "POST"
+        }).then(res => res.text()).then(
+            text => {
+                let data = JSON.parse(text)
+                // console.log(data["Result"])
+                result.innerHTML = data["Result"]
+            })
+    })
+
+    /*
+.then(res => res.text()).then(
+            text => {
+                console.log(text[0])
+                result.innerHTML = text
+            })
+
+            .then(res => {
+            console.log(res.text())
+        })
+    */
+    
+
+    
+    </script>
+</html>
