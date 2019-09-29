@@ -1,0 +1,351 @@
+  
+<html>
+        <head>
+            <script src="https://d3js.org/d3.v4.js"></script>
+            <style>
+            body, html {
+                width: 100%;
+                height: 100%;
+                padding: 0px;
+                overflow-x: hidden;
+                margin: 0;
+                /* background-image: linear-gradient(to right,#a5d6a7,#d7ffd9); */
+                background-image: url("https://i.ytimg.com/vi/RovleibldJ4/maxresdefault.jpg");
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: fixed;
+                
+            }
+            /* Header/Logo Title */
+            .header {
+                background-color: #ffffff;
+                max-width: 1920px;
+                margin: 0 auto;
+                padding: 0 2%;
+                position: relative;
+                text-align: left;
+                align-items: center;
+                display: flex;
+                height: 71px;
+                justify-content: space-between;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            /*Page Title */
+            .title {
+                color: #707070;
+                font-size: 55px;
+                left: 20px;
+                padding-bottom: 20px;
+                position: relative;
+                text-align: left;
+                }
+            /* Bordered form */
+            #form {
+                display: flex;
+                flex-wrap: wrap;
+                max-width: 65%;
+                /* display: inline-block;  */
+                font-size: 14pt;
+                font-family: Arial, Helvetica, sans-serif;
+                margin: 40px auto;
+                padding: 10px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+                /*left/right, top/down, how big*/
+                border-radius: 10px;
+                background-color: white;
+                vertical-align: center;
+            }
+            .paragraph{
+            padding: 0 2%;
+            }
+            /* Full-width inputs */
+            input[type=text], input[type=number], input[type=email], input[type=name], input[type=home], input[type=practice], input[type=practiceadd], input[type=license] {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                background-color: #EBF4F2;
+                border-radius: 5px;
+                border: 0px;
+                box-sizing: border-box;
+            }
+            /* Set a style for all buttons */
+            button {
+                background-color: rgb(159, 190, 183);
+                outline:none;
+                height:  38px;
+                display:  inline-block;
+                float:  none;
+                text-align:  center;
+                padding:  10px;
+                font-size:  14px;
+                color:  black;
+                border:  2px solid rgb(108, 148, 139, 0);
+                border-radius: 5px;
+            }
+            /* Add a hover effect for buttons */
+            button:hover {
+                color:  rgb(108, 148, 139);
+                background: white;
+                border:  2px solid rgb(108, 148, 139);
+                border-radius: 5px;
+            }
+            a:link, a:visited, a:active {
+                color: black;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                width: 100%;
+            }
+            /* Extra style for the cancel button (red) */
+            .cancelbtn {
+                width: auto;
+                padding: 10px 18px;
+                background-color: rgb(159, 190, 183); 
+            }
+            /* Add padding to containers */
+            .container {
+                padding: 16px;
+            }
+            /* The "Forgot password" text */
+            span.psw {
+                float: right;
+                padding-top: 16px;
+            }
+            .floating{
+            float: right;
+            }
+
+            .grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-gap: 1rem;
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+
+            .GridItem{
+                padding: 10px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+                border-radius: 10px;
+                background-color: white
+            }
+
+            /* Change styles for span and cancel button on extra small screens */
+            @media screen and (max-width: 300px) {
+                span.psw {
+                    display: block;
+                    float: none;
+                }
+                .cancelbtn {
+                    width: 100%;
+                }
+            }    
+            @font-face {
+            font-family: 'youth_powerregular';
+            src: url('youth_power-webfont.woff2') format('woff2'),
+                 url('youth_power-webfont.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            }
+
+            .niceText {
+                color:teal; text-align: center;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size: 20px
+            }
+            
+            </style>
+        </head>
+        <body>
+            <p style="text-align:center;font-family:'youth_powerregular';font-size: 200px;color:lightseagreen">Refugee AI </p>
+            <p class="niceText">Immigrating to the United States can be a daunting task. By harnessing artificial intelligence and big data, things get a lot simpler.</p>
+            <br />
+            <p class="niceText">
+                Despite many refugees and immigrants having decent educations before they were forced to leave their countries, many
+                make much lower wages even if having a university education.
+            </p>
+            <p class="niceText">
+                Unfortunately, running professions on the underlying algorithm showed that even having a higher paying profession before leaving
+                didn't lead to higher wages back here in the United States. 
+            </p>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <div class ="grid">
+                <div id ="YearEduHist" class="GridItem"></div>
+                <div id ="TopFiveJob" class="GridItem"></div>
+            </div>
+            <br />
+            <p style="text-align: center;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Simply input how many years of education you have, and your level of english.</p>
+            <div id='Form' style="text-align: center">
+                <label>Years of Education</label>
+                <input type="number" min="0" max="35" id="Edu">
+                
+                <label>Current English Level (0 Advanced - 4 Beginner)</label>
+                <input type="number" min="0" max="4" id="English">
+            
+                <button id="Submit" style="box-align: center;align-self: center;text-align: center">Submit</button>
+            </div>
+            <div id='Form'>
+                <p> Prediction: <span id = "Result"></span></p>
+            </div>
+            <p style="text-align: center;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
+                Made by Braedyn Au, Lars Schonander, Kailun Ye, and Michelle Yu 
+            </p>
+        </body>
+        <script>
+        let education = document.querySelector("#Edu")
+        let english = document.querySelector("#English")
+        let educationValue = education.value
+        let englishValue = english.value
+        let result = document.querySelector("#Result")
+        const btn = document.querySelector("#Submit")
+        btn.addEventListener("click", function(){
+            
+            educationValue = education.value
+            englishValue = english.value
+            console.log(educationValue)
+            console.log(englishValue)
+            fetch("https://hacknyapi.onrender.com/predict", {
+                body:`{"Schooling": ${educationValue}, "English": ${englishValue}}`,
+                headers: {
+                "Content-Type": "application/json"
+                },
+                method: "POST"
+            }).then(res => res.text()).then(
+                text => {
+                    let data = JSON.parse(text)
+                    // console.log(data["Result"])
+                    result.innerHTML = data["Result"]
+                })
+        })
+
+        // Schooling Histogram
+        var margin = {top: 10, right: 30, bottom: 30, left: 40},
+            width = 460 - margin.left - margin.right,
+            height = 400 - margin.top - margin.bottom;
+
+        // append the svg object to the body of the page
+        var svg = d3.select("#YearEduHist")
+        .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+            .attr("transform",
+                "translate(" + margin.left + "," + margin.top + ")");
+        //Histogram
+        d3.csv("https://gist.githubusercontent.com/Leschonander/3aa208397d301b850fd73ec3a6d1e1ce/raw/5799dc7e7f4ce1c8e7258958e5cf57bee91d0e30/Cleaned_ASR_Data_d3.csv", dataViz);
+            
+        function dataViz(data) {
+  var x = d3.scaleLinear()
+      .domain([0, 24])     
+      .range([0, width]);
+  svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+
+
+  var histogram = d3.histogram()
+      .value(function(d) { return d.Years_of_Schooling; })   
+      .domain(x.domain())  
+      .thresholds(x.ticks(70)); 
+
+  var bins = histogram(data);
+
+  
+  var y = d3.scaleLinear()
+      .range([height, 0]);
+      y.domain([0, d3.max(bins, function(d) { return d.length; })]); 
+  svg.append("g")
+      .call(d3.axisLeft(y));
+
+    svg.append("text")
+        .attr('transform', "rotate(-90)")
+        .attr('y', 0 - 45)
+        .attr('x', 0 - (450 / 2.5))
+        .attr('dy', '1em')
+        .style('text-anchor', 'middle')
+        .text("Count")
+        .attr('class', 'y axis label')
+
+  svg.selectAll("rect")
+      .data(bins)
+      .enter()
+      .append("rect")
+        .attr("x", 1)
+        .attr("transform", function(d) { return "translate(" + x(d.x0) + "," + y(d.length) + ")"; })
+        .attr("width", function(d) { return x(d.x1) - x(d.x0) -1 ; })
+        .attr("height", function(d) { return height - y(d.length); })
+        .style("fill", "#ffcc00")
+
+        // Top Five Jobs
+        const xScale = d3.scaleBand().rangeRound([0, 400]).padding(0.1)
+        const yScale = d3.scaleLinear().range([300, 0]);
+
+            const BarChartSVG = d3.select("#TopFiveJob").append("svg")
+            .attr("width", 500)
+            .attr("height", 400)
+            .append('g')
+                .attr('transform', "translate(40, 60)")
+                .attr('class', "svg")
+
+            let groupedByCategory = d3.nest()
+            .key(d => d.Profession)
+            .rollup(l => {
+                return l.length
+            })
+            .entries(data)
+
+            groupedByCategory = groupedByCategory.sort((a, b) => (a.value > b.value) ? 1 : -1)
+            groupedByCategory = groupedByCategory.slice(12, 17)
+
+            console.log(groupedByCategory)
+
+            xScale.domain(groupedByCategory.map((d) => d.key))
+            yScale.domain([0, d3.max(groupedByCategory, (d) => d.value)])
+
+            const xAxis = BarChartSVG.append("g")
+                .attr('transform', `translate(0, 300)`)
+                .attr('class', 'x axis')
+                .call(d3.axisBottom(xScale)
+                    .tickSize(0, 0)
+                    .tickSizeInner(0)
+                    .tickPadding(10))
+
+            const yAxis = BarChartSVG.append("g")
+                .attr('class', 'y axis')
+                .call(d3.axisLeft(yScale)
+                    .ticks(5)
+                    .tickSizeInner(0)
+                    .tickPadding(12)
+                    .tickSize(0,0))
+                
+            BarChartSVG
+                .append("text")
+                .attr('transform', "rotate(-90)")
+                .attr('y', 0 - 45)
+                .attr('x', 0 - (300 / 2.5))
+                .attr('dy', '1em')
+                .style('text-anchor', 'middle')
+                .text("Count")
+                .attr('class', 'y axis label')
+
+            BarChartSVG
+                .selectAll(".rect")
+                .data(groupedByCategory)
+                .enter()
+                .append('rect')
+                    .attr('class', 'bar')
+                    .attr('x', (d) => xScale(d.key))
+                    .attr('y', (d) => yScale(d.value))
+                    .attr('width', xScale.bandwidth())
+                    .attr('height', (d) => 300 - yScale(d.value))
+                    .attr('fill', "#ffcc00")
+        }
+        
+        
+        
+        </script>
+    </html>
