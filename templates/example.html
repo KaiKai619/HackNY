@@ -2,14 +2,25 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-        <link href="./CSS/style.css" rel="stylesheet" type="text/css" />
+        <link href="../static/style.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
-        <input type="number" min="0" max="35" id="Edu">
-        <input type="number" min="0" max="4" id="English">
+        <br />
+        <p style="text-align:center;font-family: youth_powerregular;font-size: 200px;color:lightseagreen">Refugee AI </p>
+        <br />
+        <p style = "color:teal; text-align: center;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size: 20px">Immigrating to the United States can be a daunting task. By harnessing artificial intelligence and big data, things get a lot simpler.</p>
+        <br />
+        <br />
+        <br />
+        <p style="text-align: center;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Simply input how many years of education you have, and your level of english.</p>
+        <form >
+            <p>Years of Education</p>
+            <input type="number" min="0" max="35" id="Edu"></form>
+        
+        <form ><input type="number" min="0" max="4" id="English">Level of English</form>
 
-        <button id="Submit">Submit</button>
-        <p>Value: <span id = "Result"></span></p>
+        <form><button onclick=id="Submit">Submit</button></form>
+        <form><p>Value: <span id = "Result"></span></p></form>
     </body>
     <script>
 
